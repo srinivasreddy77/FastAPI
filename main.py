@@ -1,28 +1,7 @@
-from typing import Optional
 from fastapi import FastAPI
+from src.books.routes import book_router
+app=FastAPI()
 
-app = FastAPI()
+#we have to include the router in the app instance
 
-inventory={
-    1:{
-        "name": "Apple",
-        "price": 1.00,
-        "quantity": 100
-    }
-}
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello, FastAPI!"}
-
-@app.get("/get-item/{item_id}")
-def get_item(item_id:int):
-    return inventory[item_id]
-
-
-@app.get("/users/{user_id}")
-def get_user(user_id:int,details:Optional[bool]=None):
-    return {
-        "user_id": user_id,
-        "details": details
-    }
+app.include_router(book_router, prefix="/books", tags=["books"])
