@@ -1,2 +1,2 @@
 # FastAPI
-This is a backend project on creating a blog Website
+This is a backend project on creating a book store Website
